@@ -21,13 +21,14 @@ $(document).ready(function(){
 	   $('#example').DataTable( {
 			ajax: {
 			   url: 'http://localhost:3000/search?date1='+key+'&date2='+key2,
-			   method: "GET",
-			   xhrFields: {
-				   withCredentials: true
-			   }
+			   method: "GET" 
 			},
 			columns: [
-				{ data: "date1" },
+				{ data: "date1" ,
+				   render : function(data){
+				      return "<a class='view-data'  href='#'>"+data+"</a>";
+				   }
+				},
 				{ data: "date2" }				
 			]
 		} );
@@ -35,7 +36,10 @@ $(document).ready(function(){
     
 });   
    
-   
+  $('#example').on('click','.view-data',function(data){
+       
+	 
+  }); 
     
    
    

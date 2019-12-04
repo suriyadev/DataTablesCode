@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link  rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script>
+$(document).ready(function(){
+   
+   
+   $('#search').on('click',function(){ 
+     
+	   var key = $('#fromDate').val();
+	   var  key2 = $('#toDate').val();
+    
+   
+       $("#example").dataTable().fnDestroy();
+   
+	   $('#example').DataTable( {
+			ajax: {
+			   url: 'http://localhost:3000/search?date1='+key+'&date2='+key2,
+			   method: "GET",
+			   xhrFields: {
+				   withCredentials: true
+			   }
+			},
+			columns: [
+				{ data: "date1" },
+				{ data: "date2" }				
+			]
+		} );
+    
+    
+});   
+   
+   
+    
+   
+   
+});
+</script>
+</head>
+<body>
+ 
+ <input type="date" id="fromDate" />
+ 
+ <input type="date" id="toDate" />
+ 
+ <button  class="btn btn-primary" id="search">Search</button> 
+<br>
+<hr>
+<table id="example" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>From Date</th> 
+				                <th>To Date</th> 
+            </tr>
+        </thead>
+         
+    </table>
+
+</body>
+</html>
